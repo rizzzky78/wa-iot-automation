@@ -1,6 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
-const client = new MongoClient("MONGODB_URI", {
+const client = new MongoClient(process.env.MONGODB_URI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -8,13 +8,13 @@ const client = new MongoClient("MONGODB_URI", {
   },
 });
 
-const Database = client.db("DATABASE_NAME");
+const Database = client.db("IoT");
 
 /**
  * @type { import("@database/schema").MongoCollection }
  */
 const collections = {
-  user: Database.collection("USER_COLLECTION_NAME"),
+  user: Database.collection("user"),
 };
 
 module.exports = { collections };
